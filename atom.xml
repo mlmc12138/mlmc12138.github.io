@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mlmc12138.github.io</id>
     <title>Gridea</title>
-    <updated>2022-02-06T14:43:24.198Z</updated>
+    <updated>2022-02-07T12:55:48.448Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mlmc12138.github.io"/>
     <link rel="self" href="https://mlmc12138.github.io/atom.xml"/>
@@ -10,6 +10,96 @@
     <logo>https://mlmc12138.github.io/images/avatar.png</logo>
     <icon>https://mlmc12138.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[单链表题目]]></title>
+        <id>https://mlmc12138.github.io/post/dan-lian-biao-ti-mu/</id>
+        <link href="https://mlmc12138.github.io/post/dan-lian-biao-ti-mu/">
+        </link>
+        <updated>2022-02-06T12:20:39.000Z</updated>
+        <summary type="html"><![CDATA[<h3 id="合并两个有序单链表">合并两个有序单链表：</h3>
+<p>​        题目链接：https://leetcode-cn.com/problems/merge-two-sorted-lists/</p>
+<p>​        思路：比较两个链表的值，将值较小的加入到结果链表中</p>
+]]></summary>
+        <content type="html"><![CDATA[<h3 id="合并两个有序单链表">合并两个有序单链表：</h3>
+<p>​        题目链接：https://leetcode-cn.com/problems/merge-two-sorted-lists/</p>
+<p>​        思路：比较两个链表的值，将值较小的加入到结果链表中</p>
+<!-- more -->
+<!-- more -->
+<!-- more -->
+<p>​		代码：</p>
+<pre><code>    ```js
+</code></pre>
+<p>var mergeTwoLists = function(list1, list2) {<br>
+if(list1=<mark>null) {<br>
+return list2<br>
+}<br>
+if(list2</mark>=null) {<br>
+return list1<br>
+}<br>
+if(list1.val&lt;list2.val) {<br>
+list1.next = mergeTwoLists(list1.next,list2)<br>
+return list1<br>
+}<br>
+else {<br>
+list2.next = mergeTwoLists(list1,list2.next)<br>
+return list2<br>
+}<br>
+};<br>
+```</p>
+<h3 id="环形链表">环形链表</h3>
+<p>​		题目地址：https://leetcode-cn.com/problems/linked-list-cycle/</p>
+<p>​		思路：通过快慢指针进行判断，快指针一次走两步，慢指针一次走一步，若链表中存在环，则两指针一定会有重合的时候</p>
+<p>​		代码：</p>
+<pre><code class="language-js">var hasCycle = function(head) {
+    let left = head
+    let right = head
+    while(right!=null&amp;&amp;right.next!=null) {
+      left = left.next
+      right = right.next.next
+      if(left==right) {
+        return true
+      }
+    }
+    return false
+};
+</code></pre>
+<h3 id="链表的中间节点">链表的中间节点</h3>
+<p>​			题目地址： https://leetcode-cn.com/problems/middle-of-the-linked-list/</p>
+<p>​			思路： 通过快慢指针进行判断，指针运动方式 慢指针一次一步 快指针一次两步 这样当快指针到达尾部时，慢指针所在的位置就是链表的中点</p>
+<p>​			代码</p>
+<pre><code class="language-js">var middleNode = function(head) {
+    let slow =  head
+    let fast = head
+    while(fast&amp;&amp;fast.next) {
+        fast = fast.next.next
+        slow = slow.next
+    }
+    return slow
+};
+</code></pre>
+<h3 id="删除单链表的倒数第k个元素">删除单链表的倒数第k个元素</h3>
+<p>​			题目地址：https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/</p>
+<p>​			思路： 也是通过快慢指针；要删除倒数第k个元素即要从前向后走 n-k 步 （n为链表长度） 让两指针相距k，当快指针走到最后时，慢指针的next即为倒数第k个元素</p>
+<p>​			代码：</p>
+<pre><code class="language-js"> var removeNthFromEnd = function (head, n) {
+      var left = head
+      var right = head
+      while(n&gt;0) {
+        right = right.next
+        n--
+      }
+      if(!right) return head.next
+      while(right&amp;&amp;right.next) {
+        left = left.next
+        right = right.next
+      }
+      left.next = left.next.next
+      return head
+    };
+</code></pre>
+<p>这些都是比较经典的单链表相关的问题，大部分题目都是使用双指针去解决的；在做题时一定要灵活运用双指针</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[哈哈哈]]></title>
         <id>https://mlmc12138.github.io/post/ha-ha-ha/</id>
