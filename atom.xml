@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mlmc12138.github.io</id>
     <title>Gridea</title>
-    <updated>2022-02-07T13:03:20.053Z</updated>
+    <updated>2022-02-07T13:07:36.640Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mlmc12138.github.io"/>
     <link rel="self" href="https://mlmc12138.github.io/atom.xml"/>
@@ -16,36 +16,27 @@
         <link href="https://mlmc12138.github.io/post/dan-lian-biao-ti-mu/">
         </link>
         <updated>2022-02-06T12:20:39.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="合并两个有序单链表">合并两个有序单链表：</h3>
-<p>​        题目链接：https://leetcode-cn.com/problems/merge-two-sorted-lists/</p>
-<p>​        思路：比较两个链表的值，将值较小的加入到结果链表中</p>
-]]></summary>
         <content type="html"><![CDATA[<h3 id="合并两个有序单链表">合并两个有序单链表：</h3>
 <p>​        题目链接：https://leetcode-cn.com/problems/merge-two-sorted-lists/</p>
 <p>​        思路：比较两个链表的值，将值较小的加入到结果链表中</p>
-<!-- more -->
-<!-- more -->
-<!-- more -->
 <p>​		代码：</p>
-<pre><code>    ```js
+<pre><code>var mergeTwoLists = function(list1, list2) {
+  if(list1===null) {
+    return list2
+  }
+  if(list2===null) {
+    return list1
+  }
+  if(list1.val&lt;list2.val) {
+    list1.next = mergeTwoLists(list1.next,list2)
+    return list1
+  }
+  else {
+    list2.next = mergeTwoLists(list1,list2.next)
+    return list2
+  }
+};
 </code></pre>
-<p>var mergeTwoLists = function(list1, list2) {<br>
-if(list1=<mark>null) {<br>
-return list2<br>
-}<br>
-if(list2</mark>=null) {<br>
-return list1<br>
-}<br>
-if(list1.val&lt;list2.val) {<br>
-list1.next = mergeTwoLists(list1.next,list2)<br>
-return list1<br>
-}<br>
-else {<br>
-list2.next = mergeTwoLists(list1,list2.next)<br>
-return list2<br>
-}<br>
-};<br>
-```</p>
 <h3 id="环形链表">环形链表</h3>
 <p>​		题目地址：https://leetcode-cn.com/problems/linked-list-cycle/</p>
 <p>​		思路：通过快慢指针进行判断，快指针一次走两步，慢指针一次走一步，若链表中存在环，则两指针一定会有重合的时候</p>
