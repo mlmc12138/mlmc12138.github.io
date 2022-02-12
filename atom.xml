@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mlmc12138.github.io</id>
     <title>Gridea</title>
-    <updated>2022-02-12T11:38:18.309Z</updated>
+    <updated>2022-02-12T13:51:37.704Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mlmc12138.github.io"/>
     <link rel="self" href="https://mlmc12138.github.io/atom.xml"/>
@@ -36,8 +36,8 @@
 仅输入一个“前”字函数就执行了五次。那么当我们输入的字符串很长时，函数执行的次数也会变得很多；如果我们要发送请求的话，请求会变得非常频繁，导致性能下降；</p>
 <!-- more -->
 <p>如何把函数执行的次数降低，就是防抖的使用场景</p>
-<h4 id="第一种方式-延时执行">第一种方式-延时执行</h4>
-<p>利用定时器，当用户输入时，不会执行定时器中的函数；用户停止输入后0.5秒才会执行响应函数；具体代码如下</p>
+<h4 id="第一种方式-非立即执行">第一种方式-非立即执行</h4>
+<p>当用户进行输入时，不会立即执行函数，而是等待 n 秒后再去执行函数，如果在此期间用户有新的输入，则重新计算 n；</p>
 <pre><code class="language-js">    let inp = document.querySelector(&quot;input&quot;)
     let timer = null
     inp.oninput = function () {
@@ -67,7 +67,43 @@
     } 
 </code></pre>
 <h4 id="第二种方式-立即执行">第二种方式-立即执行</h4>
-<pre><code class="language-js">
+<p>用户第一次输入时立刻触发，然后n秒后不触发该事件才能继续执行函数</p>
+<pre><code class="language-js">     function debouce(fn, delayTime) {
+      let timer = null
+      let flag = true
+      return function () {
+        clearTimeout(timer)
+        if(flag) {
+          fn.call(this)
+          flag = false
+        }
+        timer = setTimeout(() =&gt; {
+          flag = true
+        }, delayTime)
+      }
+    } 
+</code></pre>
+<h4 id="结合版本">结合版本</h4>
+<pre><code class="language-js">function debounce_merge(fn,delayTime = 500,isImmediate = false){
+  let timer= null;
+  let flag = true;
+  if(isImmediate){
+    return function(){
+      clearTimeout(timer);
+      if(flag){
+        fn.call(this);
+        flag = false
+        }
+      timer = setTimeout(() =&gt; { flag = true},delayTime)
+    }
+  }
+  return function(){
+    clearTimeout(timerId);
+    timer = setTimeout(() =&gt; {
+      fn.call(this)
+    },delayTime)
+  }
+}
 </code></pre>
 <h1 id="节流">节流</h1>
 <h3 id="概念-2">概念</h3>
@@ -85,7 +121,7 @@
 <p>当我们滚动上图代码展示的页面时 会发生这样的效果<br>
 <img src="https://mlmc12138.github.io/post-images/1644657207757.png" alt="" loading="lazy"><br>
 稍微滚动，函数就会被执行很多次；我们想让其执行次数减少到我们想让它执行的次数，这时候我们就要用到节流了</p>
-<h4 id="节流函数">节流函数</h4>
+<h4 id="第一种方法-非立即执行">第一种方法 - 非立即执行</h4>
 <p>通过定时器限定多久执行一次</p>
 <pre><code class="language-js">   let flag = true
       window.onscroll = ()=&gt; {
@@ -98,6 +134,68 @@
         flag = false
       }
 </code></pre>
+<h4 id="函数优化">函数优化</h4>
+<p>优化方法与防抖函数的优化相同</p>
+<pre><code class="language-js"> window.onscroll = throttle(function(){
+      console.log(this.value);
+    },500)
+    function throttle(fn, delayTime) {
+      let flag = true
+      return function () {
+        if (flag) {
+          setTimeout(() =&gt; {
+            fn()
+            flag = true
+          }, delayTime)
+        }
+        flag = false
+      }
+    }
+</code></pre>
+<h4 id="第二种方法-立即执行">第二种方法 - 立即执行</h4>
+<pre><code class="language-js">    function throttle(fn, delayTime) {
+      let flag = true
+      return function () {
+        if (flag) {
+          setTimeout(() =&gt; {
+            fn()
+            flag = true
+          }, delayTime)
+        }
+        flag = false
+      }
+    }
+</code></pre>
+<h4 id="第三种方法-时间戳版本">第三种方法 - 时间戳版本</h4>
+<p>创建时间戳，在时间戳内，函数只执行一次</p>
+<pre><code class="language-js">    window.onscroll = throttle(function(){
+      console.log(&quot;Hello world!&quot;);
+    },1000)
+    function throttle(fn, delayTime) {
+      let pre = 0
+      return function(){
+        let now = Date.now()
+        if(now-pre&gt;delayTime) {
+          fn.call(this)
+          pre = now
+        }
+      }
+    }
+</code></pre>
+<h1 id="总结">总结</h1>
+<ul>
+<li>相同点
+<ul>
+<li>防抖与节流都是为了防止函数在短时间内被频繁的触发</li>
+</ul>
+</li>
+<li>不同点
+<ul>
+<li>防抖函数只执行最后一次的操作，类似游戏中的回城，在回城期间，进行操作会打断回城</li>
+<li>节流类似将多个操作合并为一个，类似于游戏中的技能释放，释放后技能会进入CD，CD完成后才能再次进行施法</li>
+</ul>
+</li>
+</ul>
 ]]></content>
     </entry>
     <entry>
