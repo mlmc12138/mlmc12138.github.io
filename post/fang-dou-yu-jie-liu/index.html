@@ -85,7 +85,7 @@
       <div class="hide-on-mobile hide-on-tablet hide-on-desktop">
         <div id="search-lightbox" class="grid-container grid-small grid-parent mfp-hide">
           <div class="search-wrapper section">
-            <form id="gridea-search-form" data-update="1644674754980" action="/search/index.html" class="search-form" _lpchecked="1">
+            <form id="gridea-search-form" data-update="1644674979866" action="/search/index.html" class="search-form" _lpchecked="1">
               <input type="text" name="q" id="s" value="" class="search-field" placeholder="搜点啥..." aria-label="搜点啥..." required="">
               <button type="submit" class="submit" aria-label="Submit">
                 <i class="fa fa-search-line"></i>
@@ -144,7 +144,7 @@
 仅输入一个“前”字函数就执行了五次。那么当我们输入的字符串很长时，函数执行的次数也会变得很多；如果我们要发送请求的话，请求会变得非常频繁，导致性能下降；</p>
 <!-- more -->
 <p>如何把函数执行的次数降低，就是防抖的使用场景</p>
-<h4 id="第一种方式-非立即执行">第一种方式-非立即执行</h4>
+<h3 id="第一种方式-非立即执行">第一种方式-非立即执行</h3>
 <p>当用户进行输入时，不会立即执行函数，而是等待 n 秒后再去执行函数，如果在此期间用户有新的输入，则重新计算 n；</p>
 <pre><code class="language-js">    let inp = document.querySelector(&quot;input&quot;)
     let timer = null
@@ -157,7 +157,7 @@
       }, 500)
     }
 </code></pre>
-<h4 id="第一种方式的优化">第一种方式的优化</h4>
+<h3 id="第一种方式的优化">第一种方式的优化</h3>
 <p>原理一样，只不过优化后的代码更容易维护，并且没有又创建一个全局变量</p>
 <pre><code class="language-js">    inp.oninput = debouce(function(){
       console.log(this.value);
@@ -174,7 +174,7 @@
       }
     } 
 </code></pre>
-<h4 id="第二种方式-立即执行">第二种方式-立即执行</h4>
+<h3 id="第二种方式-立即执行">第二种方式-立即执行</h3>
 <p>用户第一次输入时立刻触发，然后n秒后不触发该事件才能继续执行函数</p>
 <pre><code class="language-js">     function debouce(fn, delayTime) {
       let timer = null
@@ -191,7 +191,7 @@
       }
     } 
 </code></pre>
-<h4 id="结合版本">结合版本</h4>
+<h3 id="结合版本">结合版本</h3>
 <pre><code class="language-js">function debounce_merge(fn,delayTime = 500,isImmediate = false){
   let timer= null;
   let flag = true;
@@ -229,7 +229,7 @@
 <p>当我们滚动上图代码展示的页面时 会发生这样的效果<br>
 <img src="https://mlmc12138.github.io/post-images/1644657207757.png" alt="" loading="lazy"><br>
 稍微滚动，函数就会被执行很多次；我们想让其执行次数减少到我们想让它执行的次数，这时候我们就要用到节流了</p>
-<h4 id="第一种方法-非立即执行">第一种方法 - 非立即执行</h4>
+<h3 id="第一种方法-非立即执行">第一种方法 - 非立即执行</h3>
 <p>通过定时器限定多久执行一次</p>
 <pre><code class="language-js">   let flag = true
       window.onscroll = ()=&gt; {
@@ -242,7 +242,7 @@
         flag = false
       }
 </code></pre>
-<h4 id="函数优化">函数优化</h4>
+<h3 id="函数优化">函数优化</h3>
 <p>优化方法与防抖函数的优化相同</p>
 <pre><code class="language-js"> window.onscroll = throttle(function(){
       console.log(this.value);
@@ -260,7 +260,7 @@
       }
     }
 </code></pre>
-<h4 id="第二种方法-立即执行">第二种方法 - 立即执行</h4>
+<h3 id="第二种方法-立即执行">第二种方法 - 立即执行</h3>
 <pre><code class="language-js">    function throttle(fn, delayTime) {
       let flag = true
       return function () {
@@ -274,8 +274,8 @@
       }
     }
 </code></pre>
-<h4 id="第三种方法-时间戳版本">第三种方法 - 时间戳版本</h4>
-<p>创建时间戳，在时间戳内，函数只执行一次</p>
+<p>###第三种方法 - 时间戳版本<br>
+创建时间戳，在时间戳内，函数只执行一次</p>
 <pre><code class="language-js">    window.onscroll = throttle(function(){
       console.log(&quot;Hello world!&quot;);
     },1000)
