@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>单链表题目 | Gridea</title>
+<title>防抖与节流 | Gridea</title>
 <meta name="description" content="叶凡的主页" />
 <link rel="shortcut icon" href="https://mlmc12138.github.io/favicon.ico">
 <link rel="stylesheet" href="https://mlmc12138.github.io/styles/main.css">
@@ -15,11 +15,15 @@
 <script src="https://mlmc12138.github.io/media/js/jquery.magnific-popup.min.js"></script>
 <script src="https://mlmc12138.github.io/media/js/functions.js"></script>
     <meta name="referrer" content="never">
-    <meta name="description" content="合并两个有序单链表：
-​        题目链接：https://leetcode-cn.com/problems/merge-two-sorted-lists/
-​        思路：比较两个链表的值，将值较小的加入到结果链表中
-​		..." />
-    <meta name="keywords" content="算法" />
+    <meta name="description" content="防抖
+概念
+用户操作触发事件频繁，只要最后一次的操作
+使用场景
+&lt;body&gt;
+  &lt;input type=&quot;text&quot;&gt;
+  &lt;script&gt;
+    let inp = docume..." />
+    <meta name="keywords" content="" />
     <script src="https://mlmc12138.github.io/media/js/waterfall.min.js"></script>
     <script src="https://mlmc12138.github.io/media/js/prism.min.js"></script>
   </head>
@@ -93,23 +97,21 @@
       <main id="single" class="main grid-container fullcover no-sidebar aos-init aos-animate" data-aos="fade">
 
         <div class="center content">
-          <div class="featured-image cover" style="background-image: url('https://mlmc12138.github.io/post-images/dan-lian-biao-ti-mu.png');">
+          <div class="featured-image cover" style="background-image: url('/media/images/gridea.jpg');">
             <div class="meta top"> 
-              <time class="meta-info" style="float:left;" datetime="2022-02-06"><i class="fa fa-calendar"></i><span class="lately">6 天前</span></time>
+              <time class="meta-info" style="float:left;" datetime="2022-02-12"><i class="fa fa-calendar"></i><span class="lately">3 小时前</span></time>
               
-              <a href="https://mlmc12138.github.io/post/dan-lian-biao-ti-mu/#comments" class="comments meta-info" title="">
-                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/dan-lian-biao-ti-mu/"> </span>
+              <a href="https://mlmc12138.github.io/post/fang-dou-yu-jie-liu/#comments" class="comments meta-info" title="">
+                <i class="fa fa-comment remixicon"></i><span class="comment-count valine-comment-count" data-xid="/fang-dou-yu-jie-liu/"> </span>
               </a>
-              <span id="/dan-lian-biao-ti-mu/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
+              <span id="/fang-dou-yu-jie-liu/" class="leancloud_visitors views-counter meta-info" title=""><i class="fa fa-leancloud remixicon"></i><span class="leancloud-visitors-count"></span></span>
               
             </div>
             <div class="info">
               <div class="tags ">
                 
-                      <a href="https://mlmc12138.github.io/tag/BYIVIpZUb/" class="ctag ctag-0 ctag-BYIVIpZUb" aria-label="">算法</a>
-                    
               </div>
-              <h1 class="title ularge white bold">单链表题目</h1>
+              <h1 class="title ularge white bold">防抖与节流</h1>
             </div>
           </div>
         </div>  
@@ -119,79 +121,86 @@
             <article class="main-article post">
               <section class="post-content">
                 <div class="text">
-                  <h3 id="合并两个有序单链表">合并两个有序单链表：</h3>
-<p>​        题目链接：https://leetcode-cn.com/problems/merge-two-sorted-lists/</p>
-<p>​        思路：比较两个链表的值，将值较小的加入到结果链表中</p>
-<p>​		代码：</p>
-<pre><code class="language-js">var mergeTwoLists = function(list1, list2) {
-  if(list1===null) {
-    return list2
-  }
-  if(list2===null) {
-    return list1
-  }
-  if(list1.val&lt;list2.val) {
-    list1.next = mergeTwoLists(list1.next,list2)
-    return list1
-  }
-  else {
-    list2.next = mergeTwoLists(list1,list2.next)
-    return list2
-  }
-};
-</code></pre>
-<h3 id="环形链表">环形链表</h3>
-<p>​		题目地址：https://leetcode-cn.com/problems/linked-list-cycle/</p>
-<p>​		思路：通过快慢指针进行判断，快指针一次走两步，慢指针一次走一步，若链表中存在环，则两指针一定会有重合的时候</p>
-<p>​		代码：</p>
-<pre><code class="language-js">var hasCycle = function(head) {
-    let left = head
-    let right = head
-    while(right!=null&amp;&amp;right.next!=null) {
-      left = left.next
-      right = right.next.next
-      if(left==right) {
-        return true
-      }
+                  <h1 id="防抖">防抖</h1>
+<h3 id="概念">概念</h3>
+<p>用户操作触发事件频繁，只要最后一次的操作</p>
+<h3 id="使用场景">使用场景</h3>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;input type=&quot;text&quot;&gt;
+  &lt;script&gt;
+    let inp = document.querySelector(&quot;input&quot;)
+    inp.oninput = function() {
+      console.log(this.value);
     }
-    return false
-};
+  &lt;/script&gt;
+&lt;/body&gt;
 </code></pre>
-<h3 id="链表的中间节点">链表的中间节点</h3>
-<p>​			题目地址： https://leetcode-cn.com/problems/middle-of-the-linked-list/</p>
-<p>​			思路： 通过快慢指针进行判断，指针运动方式 慢指针一次一步 快指针一次两步 这样当快指针到达尾部时，慢指针所在的位置就是链表的中点</p>
-<p>​			代码</p>
-<pre><code class="language-js">var middleNode = function(head) {
-    let slow =  head
-    let fast = head
-    while(fast&amp;&amp;fast.next) {
-        fast = fast.next.next
-        slow = slow.next
+<p>当我们在输入框中输入一个“前”字时，以上代码在执行时，会出现如下图所示的情况<br>
+<img src="https://mlmc12138.github.io/post-images/1644649282426.png" alt="" loading="lazy"><br>
+仅输入一个“前”字函数就执行了五次。那么当我们输入的字符串很长时，函数执行的次数也会变得很多；如果我们要发送请求的话，请求会变得非常频繁，导致性能下降；</p>
+<!-- more -->
+<p>如何把函数执行的次数降低，就是防抖的使用场景</p>
+<h4 id="第一种方式-延时执行">第一种方式-延时执行</h4>
+<p>利用定时器，当用户输入时，不会执行定时器中的函数；用户停止输入后0.5秒才会执行响应函数；具体代码如下</p>
+<pre><code class="language-js">    let inp = document.querySelector(&quot;input&quot;)
+    let timer = null
+    inp.oninput = function () {
+      if (timer !== null) {
+        clearTimeout(timer)
+      }
+      timer = setTimeout(() =&gt; {
+        console.log(this.value);
+      }, 500)
     }
-    return slow
-};
 </code></pre>
-<h3 id="删除单链表的倒数第k个元素">删除单链表的倒数第k个元素</h3>
-<p>​			题目地址：https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/</p>
-<p>​			思路： 也是通过快慢指针；要删除倒数第k个元素即要从前向后走 n-k 步 （n为链表长度） 让两指针相距k，当快指针走到最后时，慢指针的next即为倒数第k个元素</p>
-<p>​			代码：</p>
-<pre><code class="language-js"> var removeNthFromEnd = function (head, n) {
-      var left = head
-      var right = head
-      while(n&gt;0) {
-        right = right.next
-        n--
+<h4 id="第一种方式的优化">第一种方式的优化</h4>
+<p>原理一样，只不过优化后的代码更容易维护，并且没有又创建一个全局变量</p>
+<pre><code class="language-js">    inp.oninput = debouce(function(){
+      console.log(this.value);
+    },500)
+    function debouce(fn, delayTime) {
+       let timer = null
+       return function () {
+        if (timer !== null) {
+          clearTimeout(timer)
+        }
+        timer = setTimeout(() =&gt; {
+           fn.call(this)
+        }, delayTime)
       }
-      if(!right) return head.next
-      while(right&amp;&amp;right.next) {
-        left = left.next
-        right = right.next
-      }
-      left.next = left.next.next
-      return head
-    };
+    } 
 </code></pre>
-<p>这些都是比较经典的单链表相关的问题，大部分题目都是使用双指针去解决的；在做题时一定要灵活运用双指针</p>
+<h4 id="第二种方式-立即执行">第二种方式-立即执行</h4>
+<pre><code class="language-js">
+</code></pre>
+<h1 id="节流">节流</h1>
+<h3 id="概念-2">概念</h3>
+<p>用户触发事件频繁，减少事件执行的次数；如触发1000次，使用节流使其触发次数减少到10</p>
+<h3 id="使用场景-2">使用场景</h3>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;script&gt;
+    window.onscroll = ()=&gt; {
+      console.log(&quot;hello world!&quot;);
+    }
+    // 
+  &lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<p>当我们滚动上图代码展示的页面时 会发生这样的效果<br>
+<img src="https://mlmc12138.github.io/post-images/1644657207757.png" alt="" loading="lazy"><br>
+稍微滚动，函数就会被执行很多次；我们想让其执行次数减少到我们想让它执行的次数，这时候我们就要用到节流了</p>
+<h4 id="节流函数">节流函数</h4>
+<pre><code class="language-js">   let flag = true
+      window.onscroll = ()=&gt; {
+        if(flag) {
+          setTimeout(()=&gt; {
+            console.log(&quot;Hello world&quot;);
+            flag = true
+          },500)
+        }
+        flag = false
+      }
+</code></pre>
 
                 </div>
                 <div class="clear"></div>
@@ -201,19 +210,19 @@
 
             <section class="related section">
               
-              <article class="prev grid-50 tablet-grid-50 grid-parent">
-                <div class="thumb cover lazy loaded" style="background-image: url('https://mlmc12138.github.io/post-images/er-fen-cha-zhao.png');"></div>
-                 <a href="https://mlmc12138.github.io/post/er-fen-cha-zhao/" class="full-link"></a>
+              
+              <article class="next grid-50 tablet-grid-50 grid-parent">
+                <div class="thumb cover lazy loaded" style="background-image: url('https://mlmc12138.github.io/post-images/za-ji.png');"></div>
+                 <a href="https://mlmc12138.github.io/post/za-ji/" class="full-link"></a>
                  <div class="info">
-                  <time datetime="2022-02-09">2022-02-09</time>
-                  <h4 class="title white no-margin">二分查找</h4>
+                  <time datetime="2022-02-10">2022-02-10</time>
+                  <h4 class="title white no-margin">杂记</h4>
                 </div>
                  <span class="epcl-button red">
-                  <img src="https://mlmc12138.github.io/media/images/left-arrow.svg" width="15" alt="Left Arrow">
+                  <img src="https://mlmc12138.github.io/media/images/right-arrow.svg" width="15" alt="Left Arrow">
                 </span>
                 <div class="overlay"></div>
               </article>
-              
               
 
                 <div class="clear"></div>
