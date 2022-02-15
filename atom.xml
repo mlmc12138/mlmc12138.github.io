@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mlmc12138.github.io</id>
     <title>Gridea</title>
-    <updated>2022-02-13T11:10:41.433Z</updated>
+    <updated>2022-02-15T03:05:28.105Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mlmc12138.github.io"/>
     <link rel="self" href="https://mlmc12138.github.io/atom.xml"/>
@@ -10,6 +10,29 @@
     <logo>https://mlmc12138.github.io/images/avatar.png</logo>
     <icon>https://mlmc12138.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[Vue项目打包后页面空白问题]]></title>
+        <id>https://mlmc12138.github.io/post/vue-xiang-mu-da-bao-hou-ye-mian-kong-bai-wen-ti/</id>
+        <link href="https://mlmc12138.github.io/post/vue-xiang-mu-da-bao-hou-ye-mian-kong-bai-wen-ti/">
+        </link>
+        <updated>2022-02-15T02:47:19.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="第一种情况-资源加载失败">第一种情况 资源加载失败</h1>
+<p>报错如下<br>
+<img src="https://mlmc12138.github.io/post-images/1644893370600.png" alt="" loading="lazy"><br>
+这个问题是由于路径的问题，我们可以在项目下新建一个  <code>vue.config.js</code>  文件，在里面我们输入如下代码</p>
+<pre><code class="language-js">module.exports = {
+  publicPath:'./'
+}
+</code></pre>
+<p>再重新进行打包就可以了，这时候的资源都能够加载成功了</p>
+<h1 id="第二种情况-无报错">第二种情况 无报错</h1>
+<p>此时我们可能在使用路由时，为了美观将其<code>mode</code>改为了history模式，此时我们需要将其改为<code>hash</code>模式才能正常显示，这时候我们要找到 <code>src/router</code> 下的<code>index.ts/index.js</code>文件将 <code>createWebHistory</code>改为 <code>createWebHashHistory</code>即可<br>
+<img src="https://mlmc12138.github.io/post-images/1644894139898.png" alt="" loading="lazy"><br>
+<img src="https://mlmc12138.github.io/post-images/1644894146987.png" alt="" loading="lazy"><br>
+<img src="https://mlmc12138.github.io/post-images/1644894223118.png" alt="" loading="lazy"><br>
+<img src="https://mlmc12138.github.io/post-images/1644894234700.png" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[防抖与节流]]></title>
         <id>https://mlmc12138.github.io/post/fang-dou-yu-jie-liu/</id>
