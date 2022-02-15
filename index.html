@@ -75,7 +75,7 @@
       <div class="hide-on-mobile hide-on-tablet hide-on-desktop">
         <div id="search-lightbox" class="grid-container grid-small grid-parent mfp-hide">
           <div class="search-wrapper section">
-            <form id="gridea-search-form" data-update="1644894468105" action="/search/index.html" class="search-form" _lpchecked="1">
+            <form id="gridea-search-form" data-update="1644895104758" action="/search/index.html" class="search-form" _lpchecked="1">
               <input type="text" name="q" id="s" value="" class="search-field" placeholder="搜点啥..." aria-label="搜点啥..." required="">
               <button type="submit" class="submit" aria-label="Submit">
                 <i class="fa fa-search-line"></i>
@@ -96,16 +96,42 @@
               
               <div class="articles columns-3">
                 
-                <article class="bgstyle grid-33 tablet-grid-50 mobile-grid-100 np-mobile post type-post status-publish format-standard has-post-thumbnail hentry" style="">
-                  <div class="article-wrapper  cover" style="background-image: url('https://mlmc12138.github.io/post-images/vue-xiang-mu-da-bao-hou-ye-mian-kong-bai-wen-ti.png');">
+              <article class="default grid-33 tablet-grid-50 mobile-grid-100 np-mobile post type-post status-publish format-standard has-post-thumbnail hentry">
+                <div class="article-wrapper">
                   <header>
-                    
+                    <div class="post-format-image post-format-wrapper">
+                      <div class="featured-image">
+                        <a href="https://mlmc12138.github.io/post/vue-xiang-mu-da-bao-hou-ye-mian-kong-bai-wen-ti/" class="thumb hover-effect">
+                          <span class="fullimage cover" role="img" aria-label="" style="background-image: url('https://mlmc12138.github.io/post-images/vue-xiang-mu-da-bao-hou-ye-mian-kong-bai-wen-ti.png');"></span>
+                        </a>
+                        
+                      </div>
+                    </div>                    
                     <div class="meta">
-                      <time datetime="2022-02-15"><i class="fa fa-calendar"></i><span class="lately">25 分钟前</span></time>
+                      <time datetime="2022-02-15"><i class="fa fa-calendar"></i><span class="lately">31 分钟前</span></time>
                       <div class="clear"></div>
                     </div>
+
                     <h1 class="title main-title gradient-effect"><a href="https://mlmc12138.github.io/post/vue-xiang-mu-da-bao-hou-ye-mian-kong-bai-wen-ti/">Vue项目打包后页面空白问题</a></h1>
                   </header>
+
+                  <div class="post-excerpt">
+                      <h1 id="第一种情况-资源加载失败">第一种情况 资源加载失败</h1>
+<p>报错如下<br>
+<img src="https://mlmc12138.github.io/post-images/1644893370600.png" alt="" loading="lazy"><br>
+这个问题是由于路径的问题，我们可以在项目下新建一个  <code>vue.config.js</code>  文件，在里面我们输入如下代码</p>
+<pre><code class="language-js">module.exports = {
+  publicPath:'./'
+}
+</code></pre>
+<p>再重新进行打包就可以了，这时候的资源都能够加载成功了</p>
+<h1 id="第二种情况-无报错">第二种情况 无报错</h1>
+<p>此时我们可能在使用路由时，为了美观将其<code>mode</code>改为了history模式，此时我们需要将其改为<code>hash</code>模式才能正常显示，这时候我们要找到 <code>src/router</code> 下的<code>index.ts/index.js</code>文件将 <code>createWebHistory</code>改为 <code>createWebHashHistory</code>即可<br>
+<img src="https://mlmc12138.github.io/post-images/1644894139898.png" alt="" loading="lazy"></p>
+
+                    <div class="clear"></div>
+                  </div>
+
                   <footer class="author-meta">
                     <a href="" class="author" title="">
                       <span class="author-image cover" style="background-image: url('https://mlmc12138.github.io/images/avatar.png');"></span>
@@ -119,7 +145,7 @@
                     
                     <div class="clear"></div>
                   </footer>
-                  <div class="overlay"></div>       
+                  <div class="border"></div>       
                 </div>
               </article>
                 
