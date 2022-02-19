@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mlmc12138.github.io</id>
     <title>Gridea</title>
-    <updated>2022-02-19T02:48:07.295Z</updated>
+    <updated>2022-02-19T02:53:47.469Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mlmc12138.github.io"/>
     <link rel="self" href="https://mlmc12138.github.io/atom.xml"/>
@@ -119,8 +119,8 @@
 </code></pre>
 <p>那么什么是原型链呢？<br>
 每个对象都有自己的原型对象，它的原型对象也有自己的原型对象，如下图所示<br>
-<img src="https://mlmc12138.github.io/post-images/1645238628971.png" alt="" loading="lazy"><br>
-<strong>Tips：<code>Object.prototype</code> 是所有对象的原型对象</strong></p>
+<img src="https://mlmc12138.github.io/post-images/1645238628971.png" alt="" loading="lazy"></p>
+<p><strong>Tips：<code>Object.prototype</code> 是所有对象的原型对象</strong></p>
 ]]></content>
     </entry>
     <entry>
