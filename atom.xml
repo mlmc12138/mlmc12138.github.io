@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mlmc12138.github.io</id>
     <title>Gridea</title>
-    <updated>2022-03-02T13:20:43.139Z</updated>
+    <updated>2022-03-05T13:22:06.422Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mlmc12138.github.io"/>
     <link rel="self" href="https://mlmc12138.github.io/atom.xml"/>
@@ -10,6 +10,134 @@
     <logo>https://mlmc12138.github.io/images/avatar.png</logo>
     <icon>https://mlmc12138.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[js深浅拷贝]]></title>
+        <id>https://mlmc12138.github.io/post/js-shen-qian-kao-bei/</id>
+        <link href="https://mlmc12138.github.io/post/js-shen-qian-kao-bei/">
+        </link>
+        <updated>2022-03-05T13:21:02.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="用处">用处</h1>
+<p>当我们需要对一个引用值进行复制时，我们就需要用到拷贝</p>
+<h1 id="例子">例子</h1>
+<h4 id="原始值拷贝">原始值拷贝</h4>
+<pre><code class="language-js">    let a = 12
+    let b = a
+    a = 13
+    console.log(b) // 打印出 12
+</code></pre>
+<h4 id="引用值拷贝错误版">引用值拷贝(错误版)</h4>
+<p>如果我们使用与原始值相同的拷贝方法就会出现以下结果</p>
+<pre><code class="language-js">     let obj1 = {
+        name: &quot;小明&quot;,
+        age: 17
+     }
+     let obj2 = obj1
+     obj1.name = &quot;小红&quot;
+     console.log(obj2.name) // 此时输出为小明
+</code></pre>
+<p>因为对 obj2 进行赋值时，仅仅复制了 obj1 的指针，而指针的指向仍然是同一个对象，所以当我们通过 obj1 改变的对象与 obj2 指向的对象是同一个对象；</p>
+<h4 id="浅拷贝">浅拷贝</h4>
+<ul>
+<li>es3写法</li>
+</ul>
+<pre><code class="language-js"> let obj1 = {
+     name: &quot;小明&quot;,
+     age: 17
+ }   
+ function simpleClone(obj) {
+   var cloneObj = {}
+   // es3 的写法
+   for(let i in obj) {
+     cloneObj[i] = obj[i]
+   }
+   return cloneObj
+ }
+ let obj2 = simpleClone(obj1)
+ obj1.name = &quot;小红&quot;
+ console.log(obj2.name) // 小明
+ console.log(obj1.name) // 小红
+</code></pre>
+<ul>
+<li>es6 写法</li>
+</ul>
+<pre><code class="language-js"> let obj1 = {
+     name: &quot;小明&quot;,
+     age: 17
+ }   
+ function simpleClone(obj) {
+   var cloneObj = {}
+   // for(let key of Object.keys(obj1)) {
+   //   cloneObj[key] = obj1[key]
+   // }
+   for(let [key,value] of Object.keys(obj1)) {
+       cloneObj[key] = value
+   }
+   return cloneObj
+ }
+ let obj2 = simpleClone(obj1)
+ obj1.name = &quot;小红&quot;
+ console.log(obj2.name) // 小明
+ console.log(obj1.name) // 小红
+</code></pre>
+<h4 id="深拷贝">深拷贝</h4>
+<ul>
+<li>利用递归层层拷贝</li>
+</ul>
+<pre><code class="language-js">
+ let obj1 = {
+   a: 1,
+   b: 3,
+   c: {
+     e: {
+       f: 8
+     },
+       g: 4
+   },
+   h: 7
+  }
+function deepClone(obj,cloneObj) {
+var cloneObj = cloneObj || {}
+for(let i in obj) {
+ if(typeof obj[i]=== 'object' &amp;&amp; obj[i] !== null) {
+   cloneObj[i] = {}
+   deepClone(obj[i],cloneObj[i])
+ } else {
+   cloneObj[i] = obj[i]
+ }
+}
+return cloneObj
+}
+let obj2 = deepClone(obj1)
+obj1.c.g = 10
+console.log(obj2.c.g) 
+
+</code></pre>
+<ul>
+<li>利用 JSON.parse() 和 JSON.stringify  先将其转化为字符串，在重新转化为对象</li>
+</ul>
+<pre><code class="language-js">	 let obj1 = {
+       a: 1,
+       b: 3,
+       c: {
+         e: {
+           f: 5,
+           i: [1,2,4,5]
+         },
+         g: 4
+       },
+       h: 7
+     }
+    function deepClone(obj,cloneObj) {
+    // 利用 JSON.parse() 和 JSON.stringify  先将其转化为字符串，在重新转化为对象
+      return JSON.parse(JSON.stringify(obj))
+    }
+    let obj2 = deepClone(obj1)
+    obj1.c.e.i.push(10)
+    console.log(obj1);
+    console.log(obj2)
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[js 原型对象与原型链]]></title>
         <id>https://mlmc12138.github.io/post/js-yuan-xing-dui-xiang-yu-yuan-xing-lian/</id>
@@ -383,87 +511,6 @@ while(left &lt;= right) 的终止条件是 left == right + 1，写成区间的�
 <p>while(left &lt; right) 的终止条件是 left == right，写成区间的形式就是 [2, 2]，这时候区非空，还有一个数 2，但此时 while 循环终止了。也就是说这区间 [2, 2] 被漏掉了，索引 2 没有被搜索，如果这时候直接返回 -1 就是错误的。</p>
 <h2 id="为什么-left-mid-1right-mid-1我看有的代码是-right-mid-或者-left-mid没有这些加加减减到底怎么回事怎么判断">为什么 left = mid + 1，right = mid - 1？我看有的代码是 right = mid 或者 left = mid，没有这些加加减减，到底怎么回事，怎么判断？</h2>
 <p>当发现索引 mid 不是要找的 target 时，下一步应该去搜索 [left, mid-1] 或者 [mid+1, right]</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[单链表题目]]></title>
-        <id>https://mlmc12138.github.io/post/dan-lian-biao-ti-mu/</id>
-        <link href="https://mlmc12138.github.io/post/dan-lian-biao-ti-mu/">
-        </link>
-        <updated>2022-02-06T12:20:39.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="合并两个有序单链表">合并两个有序单链表：</h3>
-<p>​        题目链接：https://leetcode-cn.com/problems/merge-two-sorted-lists/</p>
-<p>​        思路：比较两个链表的值，将值较小的加入到结果链表中</p>
-<p>​		代码：</p>
-<pre><code class="language-js">var mergeTwoLists = function(list1, list2) {
-  if(list1===null) {
-    return list2
-  }
-  if(list2===null) {
-    return list1
-  }
-  if(list1.val&lt;list2.val) {
-    list1.next = mergeTwoLists(list1.next,list2)
-    return list1
-  }
-  else {
-    list2.next = mergeTwoLists(list1,list2.next)
-    return list2
-  }
-};
-</code></pre>
-<h3 id="环形链表">环形链表</h3>
-<p>​		题目地址：https://leetcode-cn.com/problems/linked-list-cycle/</p>
-<p>​		思路：通过快慢指针进行判断，快指针一次走两步，慢指针一次走一步，若链表中存在环，则两指针一定会有重合的时候</p>
-<p>​		代码：</p>
-<pre><code class="language-js">var hasCycle = function(head) {
-    let left = head
-    let right = head
-    while(right!=null&amp;&amp;right.next!=null) {
-      left = left.next
-      right = right.next.next
-      if(left==right) {
-        return true
-      }
-    }
-    return false
-};
-</code></pre>
-<h3 id="链表的中间节点">链表的中间节点</h3>
-<p>​			题目地址： https://leetcode-cn.com/problems/middle-of-the-linked-list/</p>
-<p>​			思路： 通过快慢指针进行判断，指针运动方式 慢指针一次一步 快指针一次两步 这样当快指针到达尾部时，慢指针所在的位置就是链表的中点</p>
-<p>​			代码</p>
-<pre><code class="language-js">var middleNode = function(head) {
-    let slow =  head
-    let fast = head
-    while(fast&amp;&amp;fast.next) {
-        fast = fast.next.next
-        slow = slow.next
-    }
-    return slow
-};
-</code></pre>
-<h3 id="删除单链表的倒数第k个元素">删除单链表的倒数第k个元素</h3>
-<p>​			题目地址：https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/</p>
-<p>​			思路： 也是通过快慢指针；要删除倒数第k个元素即要从前向后走 n-k 步 （n为链表长度） 让两指针相距k，当快指针走到最后时，慢指针的next即为倒数第k个元素</p>
-<p>​			代码：</p>
-<pre><code class="language-js"> var removeNthFromEnd = function (head, n) {
-      var left = head
-      var right = head
-      while(n&gt;0) {
-        right = right.next
-        n--
-      }
-      if(!right) return head.next
-      while(right&amp;&amp;right.next) {
-        left = left.next
-        right = right.next
-      }
-      left.next = left.next.next
-      return head
-    };
-</code></pre>
-<p>这些都是比较经典的单链表相关的问题，大部分题目都是使用双指针去解决的；在做题时一定要灵活运用双指针</p>
 ]]></content>
     </entry>
 </feed>
